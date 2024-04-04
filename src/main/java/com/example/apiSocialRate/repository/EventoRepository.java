@@ -1,2 +1,9 @@
-package com.example.apiSocialRate.repository;public interface EventoRepository {
+package com.example.apiSocialRate.repository;
+
+import com.example.apiSocialRate.model.Evento;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EventoRepository extends JpaRepository<Evento, Long>{
 }
