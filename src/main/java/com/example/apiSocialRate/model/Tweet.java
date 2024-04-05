@@ -1,8 +1,7 @@
 package com.example.apiSocialRate.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.apiSocialRate.controller.dto.TweetDTO;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,6 +10,8 @@ public class Tweet {
     @Id
     @GeneratedValue
     private Long idTweet;
+    @ManyToOne(targetEntity = Evento.class)
+    @JoinColumn(name = "evento_id")
     private Long idEvento; // Chave extrangeira da tabela Evento
     private Long quantidadeTweet;
     private String catSentimentoTweet;
@@ -18,5 +19,14 @@ public class Tweet {
     private String generoAutorTweet;
     private String numeroComentsTweet;
     private String idiomaTweet;
+
+    public Tweet (TweetDTO tweetDTO){
+        this.quantidadeTweet = tweetDTO.getQuantidadeTweet();
+        this.catSentimentoTweet = tweetDTO.getCatSentimentoTweet();
+        this.catVariadaTweet = tweetDTO.getCatVariadaTweet();
+        this.generoAutorTweet = tweetDTO.getGeneroAutorTweet();
+        this.numeroComentsTweet = tweetDTO.getNumeroComentsTweet();
+        this.idiomaTweet = tweetDTO.getIdiomaTweet();
+    }
 
 }
